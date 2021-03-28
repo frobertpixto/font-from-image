@@ -8,15 +8,15 @@ if it was possible to use Deep Learning to learn what is the font used in an ima
 
 ![example](images/example1.png)
 
-So I created a 3 step process:
+So I created a 3 steps process:
 - Generate images that contain a text from a variety of fonts.
-- Do Pre-procesing to have the data ready for Learning.
+- Do ETL preprocesing to have the data ready for Learning.
 - Train a model to identify the font in an image.
 
 ---
 ## Directories
 - **ImagesGeneration**: MacOS application generated with Xcode. This application will generate images with text
-- **ImagesProcessing**: Jupyter Notebook for pre-processing to generate 50 x 50 images and labels
+- **ImagesProcessing**: Jupyter Notebook for preprocessing to generate 50 x 50 images and labels
 - **Training**: Jupyter Notebook that performs the actual training
 
 ---
