@@ -16,8 +16,8 @@ So I created a 3 steps process:
 ---
 ## Directories
 - **ImagesGeneration**: MacOS application generated with Xcode. This application will generate images with text
-- **ImagesProcessing**: Jupyter Notebook for preprocessing to generate 50 x 50 images and labels. **Note**: Also available from [here](https://nbviewer.jupyter.org/github/frobertpixto/font-from-image/blob/main/ImagesProcessing/pre_process_font_data.ipynb). 
-- **Training**: Jupyter Notebook that performs the actual training. **Note**: Also available from [here](https://nbviewer.jupyter.org/github/frobertpixto/font-from-image/blob/main/Training/FontFromImage1.ipynb).
+- **ImagesProcessing**: Jupyter Notebook for preprocessing to generate 50 x 50 images and labels. **Note**: Also viewable from [here](https://nbviewer.jupyter.org/github/frobertpixto/font-from-image/blob/main/ImagesProcessing/pre_process_font_data.ipynb). 
+- **Training**: Jupyter Notebook that performs the actual training. **Note**: Also viewable from [here](https://nbviewer.jupyter.org/github/frobertpixto/font-from-image/blob/main/Training/FontFromImage1.ipynb).
 
 ---
 by Francois Robert 
