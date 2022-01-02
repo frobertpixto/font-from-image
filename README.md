@@ -12,6 +12,9 @@ So I created a 3 steps process:
 - Generate images that contain a text from a variety of fonts.
 - Do ETL preprocesing to have the data ready for Learning.
 - Train a model to identify the font in an image.
+ 
+The model does classification and creates a Saliency Map
+![Saliency Map](images/notebook1.png)
 
 ---
 ## Directories
