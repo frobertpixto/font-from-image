@@ -21,11 +21,12 @@ enum BorderStyle {
 class FontGenerator
 {
 	func generateFontImages() {
+		let version = 1.0
 	
 		let fillColor      = NSColor(white: 1.0, alpha: 1.0) // White
 		let textColor      = NSColor(white: 0.0, alpha: 1.0) // Black
 		
-		// List of 35 fonts. These fonts are available on MacOS or they are Google fonts. See: https://fonts.google.com
+		// List of 35 fonts. These fonts are all available on MacOS or they are Google fonts. See: https://fonts.google.com
 		let fontNames      = [
 			"Aladin-Regular",
 			"AlexBrush-Regular",
@@ -96,7 +97,7 @@ class FontGenerator
 		let borderStyles   = [BorderStyle.none]
 		
 		var fontDirGenerated = 0
-
+	
 		let directoryVersion = "prep1"
 		let baseDir = NSTemporaryDirectory() + String(format:"%@/input", directoryVersion) 
 		print("Font data will be created in: \(baseDir)")
@@ -156,7 +157,7 @@ class FontGenerator
 		let nb_3_chars = triplets.count * 2 * shadows.count * borderStyles.count // Because normal case + upper case
 
 		// We will also generate a JSON parameter file.
-		let dictParams: NSDictionary = ["nb_1_char" : nb_1_char, "nb_3_chars": nb_3_chars]
+		let dictParams: NSDictionary = ["nb_1_char" : nb_1_char, "nb_3_chars": nb_3_chars, "version": version]
 		let _ = serialize(dict: dictParams, toJSONFile: String(format:"%@/%@.param.json", baseDir, directoryVersion))
 
 		Swift.print("\nFont Dir generated: \(fontDirGenerated)")

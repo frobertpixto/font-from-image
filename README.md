@@ -6,21 +6,27 @@ This is a cleaned up version of experimentations I did in 2018 after my [Deep Le
 Having played a lot with fonts and drawing texts on an image for my **[Mix on Pix](https://apps.apple.com/us/app/mix-on-pix-text-on-photos/id633281586)** app, I wanted to see
 if it was possible to use Deep Learning to learn what is the font used in an image.  
 
-![example](images/example1.png)
+![example](readme_images/example1.png)
 
 So I created a 3 steps process:
 - Generate images that contain a text from a variety of fonts.
-- Do ETL preprocesing to have the data ready for Learning.
+- Do Extract-Transform-Load (ETL) preprocesing to have the data ready for Learning.
 - Train a model to identify the font in an image.
  
 The model does classification and creates a Saliency Map
-![Saliency Map](images/notebook1.png)
+![Saliency Map](readme_images/notebook1.png)
 
 ---
 ## Directories
-- **ImagesGeneration**: MacOS application generated with Xcode. This application will generate images with text
-- **ImagesProcessing**: Jupyter Notebook for preprocessing to generate 50 x 50 images and labels. **Note**: Also viewable from [here](https://nbviewer.jupyter.org/github/frobertpixto/font-from-image/blob/main/ImagesProcessing/pre_process_font_data.ipynb). 
-- **Training**: Jupyter Notebook that performs the actual training. **Note**: Also viewable from [here](https://nbviewer.jupyter.org/github/frobertpixto/font-from-image/blob/main/Training/FontFromImage1.ipynb).
+- **data**: The Dataset. Composed of:
+  - A json file that contains counts per image type.
+  - A directory font_data with 1 sub-directory per Font. For each of the 35 fonts, we have:
+    -  86 images with 1 character per image.
+    -  250 images with 3 characters per image.
+- **ImagesGeneration**: MacOS application generated with Xcode. This application will generate images with text. 
+- **notebooks**: Jupyter Notebook for:
+  - ETL to generate 50 x 50 images and labels. 
+  - Performs the actual training to identify the font in the text of an image.
 
 ---
 by Francois Robert 
