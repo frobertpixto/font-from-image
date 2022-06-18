@@ -64,6 +64,10 @@ class FontGenerator
 			"Yesteryear-Regular",
 		]
 		
+		// Set this to true when playing with new letter combinations to verify that there
+		// are no duplicates
+		let warnOnExistingFilename = false
+		
 		
 		// Triplets
 		// First iteration based on common 2 letter pairs from : http://homepages.math.uic.edu/~leon/mcs425-s08/handouts/char_freq2.pdf
@@ -72,7 +76,7 @@ class FontGenerator
 		// - https://www3.nd.edu/~busiforc/handouts/cryptography/letterfrequencies.html
 		//
 		// Ideally, we should determine ourself frequent triplets based on a long sample of text (ex: Wikipedia)
-		// As for why ENGLISH text? Well, money makes the world go round! (Cabaret)
+		// Actually, we could try sequences longer than 3.
 		//
 		// We will generate rectangular images from each of these triplets
 		let triplets: Set =
@@ -83,9 +87,9 @@ class FontGenerator
 							 "Car", "Tea", "Sed", "Mem", "Sal", "Neo", "Wac", "Ave", "Ole", "Nno", "Tat", "Ale", "Deb",
 							 "Vot", "Son", "Odt", "Ill", "Utt", "Rel", "Rom", "Bad", "Die", "Few", "Ran", "Riv", "Ush",
 							 "Whe", "Her", "Can", "ada", "isa", "cou", "ntr", "yin", "hen", "ort", "ern", "par", "tof",
-							 "Nor", "thA", "mer", "ica", "tst", "enp", "rov", "inc", "esa", "ndt", "hre", "ete", "rri",
-							 "tor", "ies", "ext", "ndf", "omt", "heA", "tla", "nti", "cto", "heP", "aci", "fic", "ndn",
-							 "hwa", "rdi", "nto", "eAr", "cti", "cOc", "ean", "hil"]
+							 "Nor", "ean", "mer", "ica", "tst", "enp", "rov", "inc", "esa", "ndt", "hre", "ete", "rri",
+							 "tor", "hil", "ext", "ndf", "omt", "heA", "tla", "nti", "cto", "heP", "aci", "fic", "ndn",
+							 "hwa", "rdi", "nto", "eAr", "cti", "cOc", "hil", "sir", "tho"]
 
 		// We will generate square images from each of these letters
 		let lettersToDisplay = "ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789@#?%&Çéèêëïîīçàâãôõóùúüũ"
@@ -108,13 +112,17 @@ class FontGenerator
 				
 				// Create square images with only 1 character
 				for charToDisplay in lettersToDisplay {
-					
+
 					var countForLetter = 0
 					for shadow in shadows {
 						for borderStyle in borderStyles {
 							let letterToDisplay = String(charToDisplay)
 							let fileName = String(format:"%@$$%@.%l05d.png", fontName, unicode8String(oneCharacter: letterToDisplay), countForLetter)
-							
+
+							if (warnOnExistingFilename && fileExists(dir: fontDir, filename: fileName)) {
+								Swift.print("Warning file already exists: \(fileName) for string: \(charToDisplay)")
+							}
+
 							let image = createImageForText(fontName: fontName, textToDisplay: letterToDisplay, textColor: textColor, fillColor: fillColor, shadowStyle: shadow, borderStyle: borderStyle)
 							let _ = image.save(as: fileName, fileType: NSBitmapImageRep.FileType.png, at: URL(fileURLWithPath: fontDir))
 
@@ -130,13 +138,21 @@ class FontGenerator
 						for borderStyle in borderStyles {
 							// as is case
 							let fileName = String(format:"%@$$%@.%l05d.png", fontName, unicode8String(oneCharacter: triplet), 0)
-							
+
+							if (warnOnExistingFilename && fileExists(dir: fontDir, filename: fileName)) {
+								Swift.print("Warning file already exists: \(fileName) for string: \(triplet)")
+							}
+
 							let image = createImageForText(fontName: fontName, textToDisplay: triplet, textColor: textColor, fillColor: fillColor, shadowStyle: shadow, borderStyle: borderStyle)
 							let _ = image.save(as: fileName, fileType: NSBitmapImageRep.FileType.png, at: URL(fileURLWithPath: fontDir))
 
 							// Uppercase
 							let fileNameU = String(format:"%@$$%@.%l05d.png", fontName, unicode8String(oneCharacter: triplet.uppercased()), 0)
 							
+							if (warnOnExistingFilename && fileExists(dir: fontDir, filename: fileNameU)) {
+								Swift.print("Warning file already exists: \(fileNameU) for string: \(triplet)")
+							}
+
 							let imageU = createImageForText(fontName: fontName, textToDisplay: triplet.uppercased(), textColor: textColor, fillColor: fillColor, shadowStyle: shadow, borderStyle: borderStyle)
 							let _ = imageU.save(as: fileNameU, fileType: NSBitmapImageRep.FileType.png, at: URL(fileURLWithPath: fontDir))
 						}
@@ -250,7 +266,12 @@ class FontGenerator
 		let manager = FileManager.default
 		try manager.createDirectory(atPath: dir, withIntermediateDirectories: true)
 	}
-	
+
+	func fileExists(dir: String, filename: String) -> Bool {
+		let manager = FileManager.default
+		let fullPath = dir + "/" + filename
+		return manager.fileExists(atPath: fullPath)
+	}
 	
 	// Helper function inserted by Swift 4.2 migrator.
 	fileprivate func convertToOptionalNSAttributedStringKeyDictionary(_ input: [String: Any]?) -> [NSAttributedString.Key: Any]? {
