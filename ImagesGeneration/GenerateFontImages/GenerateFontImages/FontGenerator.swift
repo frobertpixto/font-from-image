@@ -21,8 +21,7 @@ enum BorderStyle {
 class FontGenerator
 {
 	func generateFontImages() {
-		let version = 1.0
-	
+
 		let fillColor      = NSColor(white: 1.0, alpha: 1.0) // White
 		let textColor      = NSColor(white: 0.0, alpha: 1.0) // Black
 		
@@ -156,11 +155,11 @@ class FontGenerator
 		let nb_1_char  = lettersToDisplay.count * shadows.count * borderStyles.count
 		let nb_3_chars = triplets.count * 2 * shadows.count * borderStyles.count // Because normal case + upper case
 
-		// We will also generate a JSON parameter file.
-		let dictParams: NSDictionary = ["nb_1_char" : nb_1_char, "nb_3_chars": nb_3_chars, "version": version]
-		let _ = serialize(dict: dictParams, toJSONFile: String(format:"%@/%@.param.json", baseDir, directoryVersion))
+		// Display results
+		Swift.print("\nFont Dir generated: \(fontDirGenerated).")
+		Swift.print("For each font: number of 1 char images: \(nb_1_char), number of 3 chars images: \(nb_3_chars).")
+		Swift.print("Potential total images: \(fontDirGenerated * (nb_1_char + 3 * nb_3_chars)).")
 
-		Swift.print("\nFont Dir generated: \(fontDirGenerated)")
 	}
 	
 	func unicode8String(oneCharacter: String) -> String {
@@ -310,39 +309,5 @@ class FontGenerator
 		}
 		
 		return (CGSize(width: width, height: calculatedHeight), estimatedFontSize)
-	}
-	
-	
-	// Write a JSON array to a file
-	func serialize(array: NSArray, toJSONFile: String) -> Bool
-	{
-		if JSONSerialization.isValidJSONObject(array) {
-			do {
-				let jsonData = try JSONSerialization.data(withJSONObject: array, options: .prettyPrinted)
-				try jsonData.write(to: URL(fileURLWithPath: toJSONFile), options: .atomic)
-			} catch {
-				// Handle Error
-				return false
-			}
-		}
-		
-		return true
-	}
-
-	
-	// Write a JSON dict to a file
-	func serialize(dict: NSDictionary, toJSONFile: String) -> Bool
-	{
-		if JSONSerialization.isValidJSONObject(dict) {
-			do {
-				let jsonData = try JSONSerialization.data(withJSONObject: dict, options: .prettyPrinted)
-				try jsonData.write(to: URL(fileURLWithPath: toJSONFile), options: .atomic)
-			} catch {
-				// Handle Error
-				return false
-			}
-		}
-		
-		return true
 	}
 }

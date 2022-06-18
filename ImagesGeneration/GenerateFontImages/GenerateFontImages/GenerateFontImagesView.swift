@@ -35,7 +35,7 @@ extension GenerateFontImagesView {
 		var familyCount = 0
 		var fontCount   = 0
 		
-		print("avaialble fonts.")
+		print("Available fonts.")
 		
 		for fontFamilyName in fontFamilyNames {
 			print("Font family: \(fontFamilyName)")
@@ -58,7 +58,7 @@ extension GenerateFontImagesView {
 	}
 	
 	func generateImagesAction() {
-		print("generateImagesAction action")
+		print("Generate Images")
 		let fontGenerator = FontGenerator()
 
 		fontGenerator.generateFontImages()
