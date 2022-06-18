@@ -45,7 +45,6 @@ extension NSImage {
 	func save(as fileName: String, fileType: NSBitmapImageRep.FileType = .png, at directory: URL = URL(fileURLWithPath: FileManager.default.currentDirectoryPath)) -> Bool {
 		guard let tiffRepresentation = tiffRepresentation, directory.hasDirectoryPath, !fileName.isEmpty else { return false }
 		do {
-//			let _ = NSColorSpace.genericGray
 			self.lockFocus()
 			
 			try NSBitmapImageRep(data: tiffRepresentation)?
