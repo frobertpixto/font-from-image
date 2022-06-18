@@ -19,14 +19,14 @@ I also create an interesting Saliency Map
 
 ---
 ## Directories
-- **data**: The Dataset. Composed of:
-  - A json file that contains counts per image type.
-  - A directory font_data with 1 sub-directory per Font. For each of the 35 fonts, we have:
+- **data/font_data**: The Dataset of 29,050 50x50x1 images. Composed of:
+  - 1 directory per Font. For each of the 35 fonts, we have:
     -  86 images with 1 character per image.
     -  250 images with 3 characters per image.
 - **ImagesGeneration**: MacOS application generated with Xcode. This application will generate images with text. 
 - **notebooks**: Jupyter Notebook for:
-  - ETL to generate 50 x 50 images and labels. 
+  - ETL to generate 29,050 50x50x1 images and labels. 
+    - 35 *  (86 + (3 * 250)) = 29,260... not 29,050
   - Performs the actual training to identify the font in the text of an image.
 
 ---
