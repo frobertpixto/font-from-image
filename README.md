@@ -9,11 +9,12 @@ if it was possible to use Deep Learning to learn what is the font used in an ima
 ![example](readme_images/example1.png)
 
 So I created a 3 steps process:
-- Generate images that contain a text from a variety of fonts.
-- Do Extract-Transform-Load (ETL) preprocesing to have the data ready for Learning.
-- Train a model to identify the font in an image.
+1. Generate images that contain a text from a variety of fonts.
+2. Do Extract-Transform-Load (ETL) preprocesing to have the data ready for Learning.
+3. Train a model for classification to identify the font in an image.
  
-The model does classification and creates a Saliency Map
+---
+I also create an interesting Saliency Map
 ![Saliency Map](readme_images/notebook1.png)
 
 ---
