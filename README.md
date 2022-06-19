@@ -1,4 +1,4 @@
-# FontFromImage
+# Font from Image
 ## Supervised Learning - Learn Font names from text in an image
 
 This is a cleaned up version of experimentations I did in 2018 after my [Deep Learning Specialization](https://www.coursera.org/specializations/deep-learning) with Andrew Ng in 2018.
@@ -14,17 +14,17 @@ So I created a 3 steps process:
 3. Train a model for classification to identify the font in an image.
  
 ---
-I also create an interesting Saliency Map
-![Saliency Map](readme_images/notebook1.png)
+After classification, I created an interesting Saliency Map
+![Saliency Map](readme_images/saliency1.png)
 
 ---
 ## Directories
-- **data/font_data**: The Dataset of 29,260 50x50x1 images. Composed of:
+- [data/font_data](data/font_data): The Dataset of 11,760 images. Composed of:
   - 1 directory per Font. For each of the 35 fonts, we have:
-    -  86 images with 1 character per image.
-    -  250 images with 3 characters per image.
-- **ImagesGeneration**: macOS application generated with Xcode. This application will generate images with text. 
-- **notebooks**: Jupyter Notebook for:
+    -  86 images with 1 character per image. 50px x 50px.
+    -  250 images with 3 characters per image. 150px x 50px.
+- [ImagesGeneration](ImagesGeneration): macOS application. This application generates images with text. Configurable.
+- [notebooks](notebooks): Jupyter Notebooks for:
   - ETL to generate 29,260 50x50x1 images and labels. 
     - 35 *  (86 + (3 * 250)) = 29,260
   - Performs the actual training to identify the font in the text of an image.
