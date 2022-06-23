@@ -30,5 +30,16 @@ After classification, I created an interesting Saliency Map
   - Performs the actual training to identify the font in the text of an image.
 
 ---
-by Francois Robert 
+## Communication
+
+- If you want to contribute, submit a pull request.
+- If you found a bug, have suggestions or need help, please, open an issue.
+
+---
+
+## Licenses
+- The data: Font from Image (FFI) Dataset © 2022 by Francois Robert is licensed under CC BY 4.0. To view a copy of this license, visit http://creativecommons.org/licenses/by/4.0/.
+- The code: The code in the notebooks and the macOS code to generate the images are licensed under the MIT license. See [here](notebooks/LICENSE.txt) and [here](ImagesGeneration/LICENSE.txt).
+---
+by Francois Robert
 
