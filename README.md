@@ -19,7 +19,7 @@ After classification, I created an interesting Saliency Map
 
 ---
 ## Directories
-- [data/font_data](data/font_data): The Dataset of 11,760 images. Composed of:
+- [data/font_data](data/font_data): The Dataset of 11,760 images. It is composed of:
   - 1 directory per Font. For each of the 35 fonts, we have:
     -  86 images with 1 character per image. 50px x 50px.
     -  250 images with 3 characters per image. 150px x 50px.
