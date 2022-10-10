@@ -254,6 +254,7 @@ class FontGenerator
 //		let ascent 			= CTFontGetAscent(coreTextFont)
 
 		// Draw the text onto the image
+        // Note: This might fail with something like "[NSNull pointSize]: unrecognized selector sent to instance" if the font is not installed.
 		textToDisplay.draw(at: NSPoint(x: (size.width - textSize.width) / 2, y: -descent+10), withAttributes: convertToOptionalNSAttributedStringKeyDictionary(nameTextAttributes as [String : Any]))
 		
 		image.unlockFocus()
